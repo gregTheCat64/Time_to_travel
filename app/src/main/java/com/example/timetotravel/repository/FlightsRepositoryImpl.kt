@@ -1,19 +1,24 @@
 package com.example.timetotravel.repository
 
 import com.example.timetotravel.models.Flight
-import com.example.timetotravel.models.api.FlightsApi
-import com.example.timetotravel.models.api.RequestCodeBody
+import com.example.timetotravel.api.FlightsApi
+import com.example.timetotravel.api.RequestCodeBody
+import com.example.timetotravel.models.FlightList
+import com.example.timetotravel.utils.ApiError
+import com.example.timetotravel.utils.NetworkError
+import java.io.IOException
 
 class FlightsRepositoryImpl(): FlightsRepository {
 
-    override suspend fun getAll(requestCodeBody: RequestCodeBody): List<Flight> {
+    override suspend fun getAll(requestCodeBody: RequestCodeBody): FlightList {
         try {
             val response = FlightsApi.api.getAll(requestCodeBody)
-            return  response
-        }catch (e: Exception){
-            e.printStackTrace()
+            if (!response.isSuccessful) throw ApiError(response.code(), response.message())
+
+            return  response.body()?: throw ApiError(response.code(), response.message())
+        }catch (e: IOException){
+            throw NetworkError
         }
-        return TODO("Provide the return value")
     }
 
     override fun likeFlight(token: String) {

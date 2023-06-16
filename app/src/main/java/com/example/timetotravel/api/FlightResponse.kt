@@ -1,16 +1,17 @@
-package com.example.timetotravel.models
+package com.example.timetotravel.api
 
+import com.example.timetotravel.models.Seat
 import java.time.LocalDateTime
 
-data class Flight(
+data class FlightResponse (
     val startCity: String,
     val endCity: String,
-    val startDate: LocalDateTime,
-    val endDate: LocalDateTime,
+    val startDate: String,
+    val endDate: String,
     val startLocationCode: String,
     val endLocationCode: String,
     val price: Int,
     val searchToken: String,
     val seats: List<Seat>,
     val serviceClass: String,
-)
+        )

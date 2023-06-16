@@ -1,4 +1,4 @@
-package com.example.timetotravel.models.api
+package com.example.timetotravel.api
 
 data class RequestCodeBody (
     val startLocationCode: String = "LED"

@@ -9,6 +9,19 @@
         android:id="@+id/flightsFragment"
         android:name="com.example.timetotravel.ui.FlightsFragment"
         tools:layout="@layout/fragment_flights"
-        android:label="FlightsFragment" />
+        android:label="FlightsFragment" >
+        <action
+            android:id="@+id/action_flightsFragment_to_flightsDetailsFragment"
+            app:destination="@id/flightsDetailsFragment" >
+            <argument
+                android:name="flightToken"
+                app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/flightsDetailsFragment"
+        android:name="com.example.timetotravel.ui.FlightsDetailsFragment"
+        tools:layout="@layout/fragment_flight_details"
+        android:label="FlightsDetailsFragment" />
 
 </navigation>

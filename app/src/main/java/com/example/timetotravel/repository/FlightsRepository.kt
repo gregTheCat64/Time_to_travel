@@ -9,5 +9,6 @@ interface FlightsRepository {
 
     suspend fun getAll(requestCodeBody: RequestCodeBody): FlightList?
 
+
     fun likeFlight(token: String)
 }

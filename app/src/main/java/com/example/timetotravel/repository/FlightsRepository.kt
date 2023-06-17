@@ -6,6 +6,7 @@ import com.example.timetotravel.models.FlightList
 import kotlinx.coroutines.flow.Flow
 
 interface FlightsRepository {
+    val data: Flow<List<Flight>>
 
     suspend fun getAll(requestCodeBody: RequestCodeBody): FlightList?
 

@@ -4,29 +4,38 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.timetotravel.models.Flight
 import com.example.timetotravel.api.RequestCodeBody
-import com.example.timetotravel.models.FlightList
+import com.example.timetotravel.db.AppDb
 import com.example.timetotravel.repository.FlightsRepository
 import com.example.timetotravel.repository.FlightsRepositoryImpl
 import com.example.timetotravel.toFlightModel
-import com.example.timetotravel.utils.AppError
 import com.example.timetotravel.utils.NetworkError
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FlightsViewModel(application: Application): AndroidViewModel(application) {
-
-    private val repository: FlightsRepository = FlightsRepositoryImpl()
+@HiltViewModel
+class FlightsViewModel @Inject constructor(
+    private val repository: FlightsRepository,
+): ViewModel() {
 
     private val requestCodeBody = RequestCodeBody("LED")
+
 
     private val _data = MutableLiveData<List<Flight>>()
     val data: LiveData<List<Flight>>
         get() = _data
 
+    private val _currentFlight = MutableLiveData<Flight>()
+    val currentFlight: LiveData<Flight>
+        get() = _currentFlight
+
     init {
-        getAll()
+        //getAll()
     }
 
     fun getAll(){

@@ -12,32 +12,7 @@ import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
 
-private const val BASE_URL = "https://vmeste.wildberries.ru/api/avia-service/twirp/aviaapijsonrpcv1.WebAviaService/"
-
-private val logging = HttpLoggingInterceptor().apply {
-    level = HttpLoggingInterceptor.Level.BODY
-}
-
-private val okttp = OkHttpClient.Builder()
-    .addInterceptor(logging)
-    .connectTimeout(10, TimeUnit.SECONDS)
-    .build()
-
-
-
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(GsonConverterFactory.create())
-    .baseUrl(BASE_URL)
-    .client(okttp)
-    .build()
-
 interface Api {
     @POST("GetCheap")
     suspend fun getAll(@Body requestCodeBody: RequestCodeBody): Response<FlightList>
-}
-
-object FlightsApi {
-    val api: Api by lazy {
-        retrofit.create(Api::class.java)
-    }
 }

@@ -14,5 +14,5 @@ import java.util.concurrent.TimeUnit
 
 interface Api {
     @POST("GetCheap")
-    suspend fun getAll(@Body requestCodeBody: RequestCodeBody): Response<FlightList>
+    suspend fun getAll(@Body requestCodeBody: RequestCodeBody): Response<List<FlightResponse>>
 }

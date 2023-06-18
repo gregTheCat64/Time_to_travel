@@ -41,7 +41,7 @@ class FlightsViewModel @Inject constructor(
     fun getAll(){
         viewModelScope.launch {
             val result = repository.getAll(requestCodeBody)?:throw NetworkError
-            _data.postValue(result.flights.map { it.toFlightModel() })
+            _data.postValue(result.map { it.toFlightModel() })
         }
 
     }
@@ -51,7 +51,7 @@ class FlightsViewModel @Inject constructor(
         viewModelScope.launch {
                 val apiResult = repository.getAll(requestCodeBody)?:throw NetworkError
                 println("data: ${data.value}")
-                currentFlight = apiResult.flights.findLast { it.searchToken == searchToken }?.toFlightModel()
+                currentFlight = apiResult.findLast { it.searchToken == searchToken }?.toFlightModel()
 
         }
         return currentFlight

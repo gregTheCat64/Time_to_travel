@@ -1,6 +1,8 @@
 package com.example.timetotravel.db
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.TypeConverter
 import com.example.timetotravel.models.Seat
@@ -12,9 +14,11 @@ import kotlinx.coroutines.flow.Flow
 interface FlightDao {
     @Query("SELECT * FROM FlightEntity")
     fun getAll(): Flow<List<FlightEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(flights: List<FlightEntity>)
+
 }
-
-
 
 
 private val typeToken = object : TypeToken<List<Seat>>() {}.type

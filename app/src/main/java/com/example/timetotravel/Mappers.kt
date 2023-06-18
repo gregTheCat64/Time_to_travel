@@ -1,6 +1,7 @@
 package com.example.timetotravel
 
 import com.example.timetotravel.api.FlightResponse
+import com.example.timetotravel.db.FlightEntity
 import com.example.timetotravel.models.Flight
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -9,6 +10,13 @@ fun FlightResponse.toFlightModel() = Flight(
     startCity,endCity,
     startDate = startDate.toLocalDateTime(),
     endDate =endDate.toLocalDateTime(),
+    startLocationCode,endLocationCode,price,searchToken, seats, serviceClass
+)
+
+fun FlightResponse.toFlightEntity() = FlightEntity(
+    startCity,endCity,
+    startDate,
+    endDate,
     startLocationCode,endLocationCode,price,searchToken, seats, serviceClass
 )
 

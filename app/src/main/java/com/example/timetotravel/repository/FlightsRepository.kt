@@ -9,8 +9,10 @@ import kotlinx.coroutines.flow.Flow
 interface FlightsRepository {
     val data: Flow<List<Flight>>
 
-    suspend fun getAll(requestCodeBody: RequestCodeBody): List<FlightResponse>?
+    suspend fun getAll(requestCodeBody: RequestCodeBody)
+
+    suspend fun getByToken(token: String): Flight?
 
 
-    fun likeFlight(token: String)
+    suspend fun likeFlight(token: String)
 }

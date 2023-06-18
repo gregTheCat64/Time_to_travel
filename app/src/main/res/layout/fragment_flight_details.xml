@@ -25,7 +25,6 @@
             app:collapsedTitleTextColor="?attr/colorOnPrimary"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:background="?android:colorBackground"
-
             >
 
             <FrameLayout

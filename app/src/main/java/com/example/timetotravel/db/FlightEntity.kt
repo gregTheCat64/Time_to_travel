@@ -19,16 +19,17 @@ data class FlightEntity (
     val searchToken: String,
     val seats: List<Seat>,
     val serviceClass: String,
+    val isFav: Boolean?
         ) {
     fun toModel() = Flight(
-        startCity, endCity, startDate.toLocalDateTime(), endDate.toLocalDateTime(),startLocationCode,endLocationCode,price,searchToken, seats, serviceClass
+        startCity, endCity, startDate.toLocalDateTime(), endDate.toLocalDateTime(),startLocationCode,endLocationCode,price,searchToken, seats, serviceClass, isFav
     )
 
     companion object{
         fun fromModel(flight: Flight) =
             FlightEntity(
                 flight.startCity, flight.endCity, flight.startDate.toString(), flight.endDate.toString(), flight.startLocationCode, flight.endLocationCode,
-                flight.price, flight.searchToken, flight.seats, flight.serviceClass
+                flight.price, flight.searchToken, flight.seats, flight.serviceClass, flight.isFav
             )
     }
 }

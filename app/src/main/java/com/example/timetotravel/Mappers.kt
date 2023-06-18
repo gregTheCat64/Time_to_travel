@@ -9,15 +9,15 @@ import java.time.format.DateTimeFormatter
 fun FlightResponse.toFlightModel() = Flight(
     startCity,endCity,
     startDate = startDate.toLocalDateTime(),
-    endDate =endDate.toLocalDateTime(),
-    startLocationCode,endLocationCode,price,searchToken, seats, serviceClass
+    endDate = endDate.toLocalDateTime(),
+    startLocationCode,endLocationCode,price,searchToken, seats, serviceClass, favStatus
 )
 
 fun FlightResponse.toFlightEntity() = FlightEntity(
     startCity,endCity,
     startDate,
     endDate,
-    startLocationCode,endLocationCode,price,searchToken, seats, serviceClass
+    startLocationCode,endLocationCode,price,searchToken, seats, serviceClass, favStatus
 )
 
 fun String.toLocalDateTime(): LocalDateTime =

@@ -15,8 +15,18 @@ interface FlightDao {
     @Query("SELECT * FROM FlightEntity")
     fun getAll(): Flow<List<FlightEntity>>
 
+    @Query("SELECT * FROM FlightEntity WHERE searchToken = :token")
+    suspend fun getByToken(token: String): FlightEntity?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(flights: List<FlightEntity>)
+
+    @Query("""
+        UPDATE FlightEntity SET
+        isFav = CASE WHEN iSFav THEN 0 ELSE 1 END
+        WHERE searchToken = :token
+    """)
+    suspend fun setFav(token: String)
 
 }
 

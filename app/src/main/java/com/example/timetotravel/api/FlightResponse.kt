@@ -14,4 +14,5 @@ data class FlightResponse (
     val searchToken: String,
     val seats: List<Seat>,
     val serviceClass: String,
+    var favStatus: Boolean?
         )

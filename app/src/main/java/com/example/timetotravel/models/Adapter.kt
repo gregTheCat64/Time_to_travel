@@ -37,9 +37,13 @@ class FlightViewHolder(private val binding: FlightCardBinding, private val onInt
         binding.routeText.text = "$startCity -> $endCity"
         binding.departureTime.text = startDate
         binding.returnTime.text = endDate
+        binding.favBtn.isChecked = flight.isFav == true
 
         binding.root.setOnClickListener {
             onInteractionListener.onFlight(flight)
+        }
+        binding.favBtn.setOnClickListener {
+            onInteractionListener.onLike(flight)
         }
     }
 }

@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Time to travel</string>
-    <string name="favbtn">favBtn</string>
+    <string name="favbtn" translatable="false">favBtn</string>
+    <string name="rub">rub.</string>
+    <string name="network_error">Network Error</string>
+    <string name="repeat">Repeat</string>
+    <string name="addToFavs">Added to Favorite</string>
+    <string name="removeFromFavs">Remove from Favorite</string>
+    <string name="back">Back:</string>
+    <string name="to">Departure:</string>
+    <string name="sky_picture" translatable="false">sky_picture</string>
+    <string name="Category">Type:</string>
+    <string name="count_seats">Seats count:</string>
+    <string name="Class">Class:</string>
+    <string name="Seats">Seats:</string>
 </resources>

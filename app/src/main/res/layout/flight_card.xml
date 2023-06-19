@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="16dp"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
@@ -15,12 +17,10 @@
 
         <TextView
             android:id="@+id/priceText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1800 Р"
-            android:textColor="#00BCD4"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+
+            style="@style/TextAppearance.AppCompat.Caption" />
 
 
         <TextView
@@ -28,8 +28,8 @@
             android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Саратов - Москва"
-            android:textSize="18sp" />
+
+            style="@style/TextAppearance.AppCompat.BigText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,15 +39,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="туда:"
+                android:text="@string/to"
                 />
             <TextView
                 android:id="@+id/departureTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="14 июля"
-                android:textSize="22sp" />
+
+                style="@style/TextAppearance.AppCompat.AccentText" />
 
         </LinearLayout>
 
@@ -59,15 +59,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="обратно:"
+                android:text="@string/back"
                 />
             <TextView
                 android:id="@+id/returnTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="20 июля"
-                android:textSize="22sp" />
+
+              style="@style/TextAppearance.AppCompat.AccentText" />
 
         </LinearLayout>
 
@@ -75,13 +75,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/favBtn"
-        style="@style/Widget.Material3.Button.IconButton"
+        style="@style/ThemeOverlay.Material3.Button.IconButton.LikeButton"
+        android:src="@drawable/ic_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:contentDescription="@string/favbtn"
         android:checkable="true"
-        app:icon="@drawable/baseline_favorite_border_24"
-        app:iconSize="36dp" />
+        />
 
 </com.google.android.material.card.MaterialCardView>

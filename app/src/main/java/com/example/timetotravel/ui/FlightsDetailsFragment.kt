@@ -2,22 +2,16 @@ package com.example.timetotravel.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
-
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.timetotravel.R
-
 import com.example.timetotravel.asOnlyDate
 import com.example.timetotravel.databinding.FragmentFlightDetailsBinding
 import com.example.timetotravel.models.Seat
 import com.example.timetotravel.models.SeatsAdapter
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -38,7 +32,6 @@ class FlightsDetailsFragment: Fragment(R.layout.fragment_flight_details) {
 
         val seatsArray: ArrayList<Seat> = arrayListOf()
 
-
         if (token != null) {
             viewModel.getByToken(token)
         }
@@ -52,14 +45,19 @@ class FlightsDetailsFragment: Fragment(R.layout.fragment_flight_details) {
         viewModel.currentFlight.observe(viewLifecycleOwner){currentFlight->
             if (token!=null){
                 println("currentFlight: $currentFlight")
+
                 binding.apply {
                     currentFlight.let {
-                        priceText.text = it?.price.toString() + "руб."
-                        routeText.text = it?.startCity + "->" + it?.endCity
+                        val priceField = it.price.toString() + getString(R.string.rub)
+                        val routeField = it.startCity + " -> " + it.endCity
+
+                        priceText.text = priceField
+                        routeText.text = routeField
                         departureTime.text = it?.startDate?.asOnlyDate()
                         returnTime.text = it?.endDate?.asOnlyDate()
                         serviceClass.text = it?.serviceClass
                         toFavBtn.isChecked = it.isFav == true
+                        mainCollapsing.title = it.startLocationCode + " -> " + it.endLocationCode
                     }
                 }
 
@@ -78,8 +76,8 @@ class FlightsDetailsFragment: Fragment(R.layout.fragment_flight_details) {
             println("state: $it")
 
             if (it.error){
-                Snackbar.make(binding.root, "Ошибка подключения", Snackbar.LENGTH_SHORT)
-                    .setAction("Повторить") {
+                Snackbar.make(binding.root, getString(R.string.network_error), Snackbar.LENGTH_SHORT)
+                    .setAction(getString(R.string.repeat)) {
                         viewModel.loadFlightList()
                     }
                     .show()

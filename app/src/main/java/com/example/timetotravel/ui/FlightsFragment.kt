@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,13 +14,10 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.timetotravel.R
 import com.example.timetotravel.databinding.FragmentFlightsBinding
 import com.example.timetotravel.models.Adapter
-import com.example.timetotravel.api.RequestCodeBody
 import com.example.timetotravel.models.Flight
 import com.example.timetotravel.models.OnInteractionListener
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -55,7 +52,11 @@ class FlightsFragment: Fragment(R.layout.fragment_flights) {
             }
 
             override fun onLike(flight: Flight) {
+                if (flight.isFav != true){
+                    Toast.makeText(requireContext(), getString(R.string.addToFavs), Toast.LENGTH_SHORT).show()
+                } else { Toast.makeText(requireContext(), getString(R.string.removeFromFavs), Toast.LENGTH_SHORT).show()}
                 viewModel.setFav(flight.searchToken)
+
             }
         })
 
@@ -70,8 +71,8 @@ class FlightsFragment: Fragment(R.layout.fragment_flights) {
             println("state: $it")
             binding.progressBar.isVisible = it.loading
             if (it.error){
-                Snackbar.make(binding.root, "Ошибка подключения", Snackbar.LENGTH_SHORT)
-                    .setAction("Повторить") {
+                Snackbar.make(binding.root, getString(R.string.network_error), Snackbar.LENGTH_SHORT)
+                    .setAction(getString(R.string.repeat)) {
                         viewModel.loadFlightList()
                     }
                     .show()

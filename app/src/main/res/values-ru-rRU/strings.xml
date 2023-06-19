@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Time to travel</string>
+    <string name="rub">" руб."</string>
+    <string name="network_error">Ошибка подключения</string>
+    <string name="repeat">Повторить</string>
+    <string name="addToFavs">Добавлен в избранное</string>
+    <string name="removeFromFavs">Удалён из избранного</string>
+    <string name="back">обратно:</string>
+    <string name="to">туда:</string>
+    <string name="Category">Категория:</string>
+    <string name="count_seats">Количество мест:</string>
+    <string name="Class">Класс:</string>
+    <string name="Seats">Места:</string>
+</resources>

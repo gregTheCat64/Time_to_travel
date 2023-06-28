@@ -5,10 +5,10 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(entities = [
-    FlightEntity::class
+    FlightEntity::class, SeatEntity::class, LikedFlightEntity::class
 ], version = 1, exportSchema = false)
 
-@TypeConverters(Converters::class)
+//@TypeConverters(Converters::class)
 abstract class AppDb: RoomDatabase() {
     abstract fun flightDao(): FlightDao
 

@@ -47,7 +47,7 @@ class FlightsViewModel @Inject constructor(
         viewModelScope.launch {
             _state.value = LoadState(loading = true)
             try {
-                repository.getAll(requestCodeBody)
+                repository.load(requestCodeBody)
                 _state.value = LoadState(idle = true)
             }catch (e: NetworkError){
               _state.value = LoadState(error = true)

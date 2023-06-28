@@ -58,6 +58,7 @@ class FlightsDetailsFragment: Fragment(R.layout.fragment_flight_details) {
                         serviceClass.text = it?.serviceClass
                         toFavBtn.isChecked = it.isFav == true
                         mainCollapsing.title = it.startLocationCode + " -> " + it.endLocationCode
+                        mainToolbar.subtitle = routeField
                     }
                 }
 
